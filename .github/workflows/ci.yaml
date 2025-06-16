@@ -1,0 +1,40 @@
+name: Train Drug Classification Model  
+run-name: Training task triggered by ${{ github.actor }}. 🚀
+on: 
+  pull_request:
+    branches:
+    - main 
+
+jobs: 
+  train-model: 
+    name: Train Model 
+    runs-on: ubuntu-latest 
+    steps: 
+      - name: Checkout Code 
+        uses: actions/checkout@v4
+
+      - name: Setup Ruff 
+        uses: astral-sh/ruff-action@v3
+
+        # To pin python version 
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Ruff Lint Check  
+        run:  |
+          ruff check .
+
+      - name: Ruff Format Check  
+        run:  |
+          ruff format --check . 
+
+      - name: Install dependencies 
+        run: 	pip3 install -U -r requirements.txt
+
+      - name: Train model
+        run: 	python3 train.py 
+
+
+
