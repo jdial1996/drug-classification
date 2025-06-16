@@ -1,3 +1,4 @@
+import json
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
@@ -18,14 +19,10 @@ import skops.io as skops
 
 # Load Data
 drug_df = pd.read_csv("./datasets/drug.csv")
-drug_df.info()
 
 # Shuffle Data
 
 drug_df = drug_df.sample(frac=1)
-
-# # Print Top 3 rows
-# # print(drug_df.head(3))
 
 # # Independent variable
 X = drug_df.drop("Drug", axis=1).values
@@ -69,6 +66,12 @@ predictions = pipeline.predict(X_test)
 accuracy = accuracy_score(Y_test, predictions)
 f1 = f1_score(Y_test, predictions, average="macro")
 
-print("Accuracy:", str(round(accuracy, 2) * 100) + "%", "F1:", round(f1, 2))
+model_metrics = {
+    "accuracy_score": f"{str(round(accuracy, 2) * 100)}%",
+    "F1_score": round(f1, 2),
+}
+
+with open("./results/metrics.json", "w") as f:
+    json.dump(model_metrics, f)
 
 skops.dump(pipeline, "model/drug_pipeline.skops")
