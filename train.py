@@ -18,14 +18,10 @@ import skops.io as skops
 
 # Load Data
 drug_df = pd.read_csv("./datasets/drug.csv")
-drug_df.info()
 
 # Shuffle Data
 
 drug_df = drug_df.sample(frac=1)
-
-# # Print Top 3 rows
-# # print(drug_df.head(3))
 
 # # Independent variable
 X = drug_df.drop("Drug", axis=1).values
