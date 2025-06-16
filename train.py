@@ -72,6 +72,6 @@ model_metrics = {
 }
 
 with open("./results/metrics.json", "w") as f:
-    json.dumps(model_metrics, f)
+    json.dump(model_metrics, f)
 
 skops.dump(pipeline, "model/drug_pipeline.skops")
