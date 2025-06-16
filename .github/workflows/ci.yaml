@@ -1,7 +1,7 @@
 name: Train Drug Classification Model  
 run-name: Training task triggered by ${{ github.actor }}. 🚀
 on: 
-  pull_request_target:
+  pull_request:
     branches:
     - main 
 
@@ -39,6 +39,7 @@ jobs:
       - name: Comment Model metrics on PR
         uses: actions/github-script@v7
         with:
+          github-token: {{ secrets.GH_TOKEN }}
           script: | 
             const fs = require('fs');
             const metrics = JSON.parse(fs.readFileSync('./results/metrics.json', 'utf8'));
