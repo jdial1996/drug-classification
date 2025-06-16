@@ -1,7 +1,7 @@
 name: Train Drug Classification Model  
 run-name: Training task triggered by ${{ github.actor }}. 🚀
 on: 
-  pull_request:
+  pull_request_target:
     branches:
     - main 
 
@@ -43,8 +43,8 @@ jobs:
             const fs = require('fs');
             const metrics = JSON.parse(fs.readFileSync('./results/metrics.json', 'utf8'));
             const body = `### 📊 Model Metrics
-            - **Accuracy**: ${metrics.accuracy}
-            - **F1 Score**: ${metrics.f1}
+            - **Accuracy**: ${metrics.accuracy_score}
+            - **F1 Score**: ${metrics.F1_score}
             `;
 
             github.rest.issues.createComment({
