@@ -55,9 +55,6 @@ jobs:
               body: body
             });
 
-      - name: Upload Trained Model Artifact
-        uses: 
-
 
         
 
