@@ -1,4 +1,4 @@
-name: Deploy Drug Classification Model  
+name: Sync to Hugging Face Hub 
 run-name: Deployment task triggered by ${{ github.actor }}. 🚀
 on: 
   push:
@@ -24,3 +24,6 @@ jobs:
 
       - name: Train model
         run: 	python3 train.py 
+
+      - name: Push to HF Hub 
+        run: git push https://huggingface.co/spaces/jdial1996/drug-classification main 
