@@ -25,5 +25,16 @@ jobs:
       - name: Train model
         run: 	python3 train.py 
 
-      - name: Push to HF Hub 
-        run: git push https://huggingface.co/spaces/jdial1996/drug-classification main 
+      - name: Add Remote 
+        env: 
+          HF: ${{ secrets.HF_TOKEN }}
+        run: | 
+          git remote add space https://huggingface.co/spaces/jdial1996/drug-classification
+        
+
+      - name: Push to hub
+        env: 
+          HF: ${{ secrets.HF_TOKEN }}
+        run: | 
+          git push --force https://huggingface.co/spaces/jdial1996/drug-classification main
+        
