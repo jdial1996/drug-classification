@@ -1,0 +1,26 @@
+name: Deploy Drug Classification Model  
+run-name: Deployment task triggered by ${{ github.actor }}. 🚀
+on: 
+  push:
+    branches:
+    - main 
+
+jobs: 
+  train-model: 
+    name: Train Model 
+    runs-on: ubuntu-latest 
+    steps: 
+      - name: Checkout Code 
+        uses: actions/checkout@v4
+
+        # To pin python version 
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies 
+        run: 	pip3 install -U -r requirements.txt
+
+      - name: Train model
+        run: 	python3 train.py 
