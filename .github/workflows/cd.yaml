@@ -6,8 +6,8 @@ on:
     - main 
 
 jobs: 
-  train-model: 
-    name: Train Model 
+  hf-sync: 
+    name: Hf sync 
     runs-on: ubuntu-latest 
     steps: 
       - name: Checkout Code 
