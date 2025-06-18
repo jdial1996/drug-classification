@@ -36,5 +36,5 @@ jobs:
         env: 
           HF: ${{ secrets.HF_TOKEN }}
         run: | 
-          git push --force https://huggingface.co/spaces/jdial1996/drug-classification main
+          git push --force https://jdial1996:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/jdial1996/drug-classification main
         
